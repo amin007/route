@@ -2,7 +2,7 @@
 ***
 Route is Open Source PHP licensed under the GPLv3 (http://www.gnu.org/licenses/).
 Inspired by Klein @ https://github.com/chriso/klein.php
-
+ 
 **How to use**
 1: You only need two files:
     a) route.php
