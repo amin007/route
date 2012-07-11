@@ -48,13 +48,54 @@ class Route
 		$uri = isset($_REQUEST['uri']) ? $_REQUEST['uri'] : '/';
 		$uri = trim($uri, $this->_trim);
 
+		$replacementValues = array();
+
+		/**
+		* List through the stored URI's
+		*/
 		foreach ($this->_listUri as $listKey => $listUri)
 		{
+			/**
+			* See if there is a match
+			*/
 			if (preg_match("#^$listUri$#", $uri))
 			{
-				call_user_func($this->_listCall[$listKey]);
+				/**
+				* Replace the values
+				*/
+				$realUri = explode('/', $uri);
+				$fakeUri = explode('/', $listUri);
+
+				/**
+				* Gather the .+ values with the real values in the URI
+				*/
+				foreach ($fakeUri as $key => $value) 
+				{
+					if ($value == '.+') 
+					{
+						$replacementValues[] = $realUri[$key];
+					}
+				}
+				
+				/**
+				* Pass an array for arguments
+				*/
+				call_user_func_array($this->_listCall[$listKey], $replacementValues);
 			}
+			
 		}
+		
 	}
 	
 }
+
+
+
+
+
+
+
+
+
+
+
