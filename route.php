@@ -47,28 +47,19 @@ class Route
 	{	
 		$uri = isset($_REQUEST['uri']) ? $_REQUEST['uri'] : '/';
 		$uri = trim($uri, $this->_trim);
-
 		$replacementValues = array();
 
-		/**
-		* List through the stored URI's
-		*/
+		# List through the stored URI's
 		foreach ($this->_listUri as $listKey => $listUri)
 		{
-			/**
-			* See if there is a match
-			*/
+			# See if there is a match
 			if (preg_match("#^$listUri$#", $uri))
 			{
-				/**
-				* Replace the values
-				*/
+				# Replace the values
 				$realUri = explode('/', $uri);
 				$fakeUri = explode('/', $listUri);
 
-				/**
-				* Gather the .+ values with the real values in the URI
-				*/
+				# Gather the .+ values with the real values in the URI
 				foreach ($fakeUri as $key => $value) 
 				{
 					if ($value == '.+') 
@@ -77,25 +68,12 @@ class Route
 					}
 				}
 				
-				/**
-				* Pass an array for arguments
-				*/
+				# Pass an array for arguments
 				call_user_func_array($this->_listCall[$listKey], $replacementValues);
-			}
+			} # end - if (preg_match("#^$listUri$#", $uri))
 			
-		}
+		} # end - foreach ($this->_listUri as $listKey => $listUri)
 		
-	}
+	} # end - public function submit()
 	
 }
-
-
-
-
-
-
-
-
-
-
-
