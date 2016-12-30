@@ -9,7 +9,6 @@ Inspired by Klein @ https://github.com/chriso/klein.php
 1: You only need two files:
 
     a) route.php
-
 	b) .htaccess
 	
 2: You can run everything from the index.php file, see the file for usage.
