@@ -44,8 +44,9 @@ class Route
 	* submit - Looks for a match for the URI and runs the related function
 	*/
 	public function submit()
-	{	
-		$uri = isset($_REQUEST['uri']) ? $_REQUEST['uri'] : '/';
+		//new version
+	{	$uri = isset($_SERVER['REQUEST_URI']) ? $_SERVER['REQUEST_URI'] : '/';
+		//$uri = isset($_REQUEST['uri']) ? $_REQUEST['uri'] : '/';
 		$uri = trim($uri, $this->_trim);
 		$replacementValues = array();
 
